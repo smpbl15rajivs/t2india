@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2India - Integrated Travel Management Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img src="./t2india_header_logo.png" alt="T2India" class="h-10 w-auto" style="filter: contrast(1.2) brightness(1.1) saturate(1.1); image-rendering: crisp-edges;">
+                </div>
+                <div class="flex space-x-4">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700">Admin Login</button>
+                    <button class="bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700">Supplier Portal</button>
+                    <button class="bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-700">Contact</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="text-6xl mb-6">✈️</div>
+            <div class="mb-6">
+                <img src="./t2india_header_logo.png" alt="T2India" class="mx-auto h-16 w-auto" style="filter: contrast(1.2) brightness(1.1) saturate(1.1); image-rendering: crisp-edges;">
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Integrated Travel Management Platform</h1>
+            <p class="text-xl md:text-2xl mb-8">Discover Incredible India with Artist, Artisans and Authentic Experience</p>
+            
+            <!-- Search Box -->
+            <div class="max-w-4xl mx-auto mb-8">
+                <div class="relative">
+                    <input type="text" id="searchInput" placeholder="Search destinations, experiences, or regions..." class="w-full px-6 py-4 text-lg text-gray-800 border-2 border-purple-300 rounded-full focus:ring-2 focus:ring-purple-500 focus:border-transparent shadow-lg">
+                    <button onclick="handleSearch()" class="absolute right-2 top-2 bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600">🔍</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Management Dashboard -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">🎯 Integrated Management Systems</h2>
+                <p class="text-xl text-gray-600">Complete travel business management in one platform</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Hotel Rate Management -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover cursor-pointer" onclick="openSystem('hotel-rates')">
+                    <div class="text-4xl mb-4">🏨</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Hotel Rate Management</h3>
+                    <p class="text-gray-600 mb-4">Upload and manage hotel rates with smart pricing algorithms</p>
+                    <div class="flex items-center text-blue-600">
+                        <span class="font-medium">Manage Rates</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Travel Costing System -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover cursor-pointer" onclick="openSystem('travel-costing')">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Travel Costing System</h3>
+                    <p class="text-gray-600 mb-4">Advanced costing with projected vs confirmed cost indicators</p>
+                    <div class="flex items-center text-green-600">
+                        <span class="font-medium">Manage Costs</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Supplier Photo Upload -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover cursor-pointer" onclick="openSystem('supplier-photos')">
+                    <div class="text-4xl mb-4">📸</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Supplier Photo Management</h3>
+                    <p class="text-gray-600 mb-4">Professional photo management for suppliers and artisans</p>
+                    <div class="flex items-center text-purple-600">
+                        <span class="font-medium">Manage Photos</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Research & Forecasting -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover cursor-pointer" onclick="openSystem('research-forecasting')">
+                    <div class="text-4xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Research & Forecasting</h3>
+                    <p class="text-gray-600 mb-4">Advanced analytics and prediction for travel industry insights</p>
+                    <div class="flex items-center text-indigo-600">
+                        <span class="font-medium">View Analytics</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Customer Search Portal -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover cursor-pointer" onclick="openSystem('customer-portal')">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Customer Search Portal</h3>
+                    <p class="text-gray-600 mb-4">Intelligent search with auto-learning and contact collection</p>
+                    <div class="flex items-center text-orange-600">
+                        <span class="font-medium">Customer Portal</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Artisan & Artist Network -->
+                <div class="bg-white rounded-lg shadow-lg p-6 card-hover cursor-pointer" onclick="openSystem('artisan-network')">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Artisan & Artist Network</h3>
+                    <p class="text-gray-600 mb-4">Connect with local artists and artisans for authentic experiences</p>
+                    <div class="flex items-center text-red-600">
+                        <span class="font-medium">Artisan Portal</span>
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="bg-gray-100 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">500+</div>
+                    <div class="text-gray-600">Hotels Managed</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <div class="text-3xl font-bold text-green-600 mb-2">1,200+</div>
+                    <div class="text-gray-600">Suppliers Connected</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">50,000+</div>
+                    <div class="text-gray-600">Photos Managed</div>
+                </div>
+                <div class="bg-white rounded-lg p-6 shadow">
+                    <div class="text-3xl font-bold text-orange-600 mb-2">10,000+</div>
+                    <div class="text-gray-600">Itineraries Created</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Collection Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md">
+                <div class="text-center mb-6">
+                    <div class="text-4xl mb-4">🔍</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Custom Travel Request</h3>
+                    <p class="text-gray-600 mb-4">Thank you for your inquiry: "<span id="queryText"></span>"</p>
+                    <p class="text-sm text-blue-600">T2India will revert in 4 working days with a personalized itinerary.</p>
+                </div>
+                
+                <form id="contactForm">
+                    <div class="mb-4">
+                        <input type="email" id="emailInput" placeholder="Your email address *" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="mb-6">
+                        <input type="tel" id="phoneInput" placeholder="Your phone number (optional)" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    </div>
+                    <div class="flex space-x-4">
+                        <button type="submit" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700">Submit Details</button>
+                        <button type="button" onclick="closeContactModal()" class="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-400">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-lg p-6 w-full max-w-md text-center">
+                <div class="text-4xl mb-4">✅</div>
+                <h3 class="text-xl font-bold text-green-600 mb-2">Request Submitted</h3>
+                <p class="text-gray-600 mb-4">Thank you! T2India will contact you within 4 working days.</p>
+                <button onclick="closeSuccessModal()" class="bg-green-600 text-white py-2 px-6 rounded-md hover:bg-green-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // System URLs
+        const systemUrls = {
+            'hotel-rates': 'https://hotel-rates.t2india.com',
+            'travel-costing': 'https://costing.t2india.com', 
+            'supplier-photos': 'https://photos.t2india.com',
+            'research-forecasting': 'https://research.t2india.com',
+            'customer-portal': 'https://lvbpwsvr.manus.space',
+            'artisan-network': 'https://artisans.t2india.com'
+        };
+
+        function openSystem(systemId) {
+            if (systemUrls[systemId]) {
+                window.open(systemUrls[systemId], '_blank');
+            }
+        }
+
+        function handleSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query.length > 5) {
+                showContactModal(query);
+            }
+        }
+
+        function showContactModal(query) {
+            document.getElementById('queryText').textContent = query;
+            document.getElementById('contactModal').classList.remove('hidden');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.add('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        // Handle contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const query = document.getElementById('queryText').textContent;
+            
+            // Simulate form submission
+            setTimeout(() => {
+                closeContactModal();
+                document.getElementById('successModal').classList.remove('hidden');
+                
+                // Reset form
+                document.getElementById('contactForm').reset();
+                document.getElementById('searchInput').value = '';
+            }, 1000);
+        });
+
+        // Handle Enter key in search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSearch();
+            }
+        });
+    </script>
+</body>
+</html>
+

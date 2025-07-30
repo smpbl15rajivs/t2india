@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T2India - Itinerary Display System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .tagline {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .itinerary-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .itinerary-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .itinerary-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .itinerary-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .description {
+            padding: 2rem;
+            font-size: 1.1rem;
+            text-align: center;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .pictures-section {
+            padding: 2rem;
+        }
+        
+        .pictures-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .picture-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: transform 0.3s ease;
+        }
+        
+        .picture-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b35;
+        }
+        
+        .picture-placeholder {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(45deg, #ff6b35, #f7931e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .handicrafts-section {
+            padding: 2rem;
+            background: #fff8f0;
+        }
+        
+        .handicrafts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .handicraft-city {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #ff6b35;
+        }
+        
+        .handicraft-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .day-wise-section {
+            padding: 2rem;
+        }
+        
+        .day-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border-left: 4px solid #667eea;
+        }
+        
+        .day-header {
+            background: #667eea;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+        }
+        
+        .day-activities {
+            padding: 1.5rem;
+        }
+        
+        .activity {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .activity:last-child {
+            border-bottom: none;
+        }
+        
+        .activity-time {
+            font-weight: bold;
+            color: #ff6b35;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .activity-title {
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .hotels-section {
+            padding: 2rem;
+            background: #f0f8ff;
+        }
+        
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .hotel-city {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-top: 4px solid #667eea;
+        }
+        
+        .hotel-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+        
+        .cost-section {
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+        }
+        
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .cost-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: #ff6b35;
+            margin: 0.5rem auto;
+        }
+        
+        .link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .link:hover {
+            text-decoration: underline;
+        }
+        
+        .price-range {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin: 1rem 0;
+        }
+        
+        .cta-button {
+            background: #ff6b35;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+        
+        .cta-button:hover {
+            background: #e55a2b;
+        }
+        
+        @media (max-width: 768px) {
+            .itinerary-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .pictures-grid,
+            .handicrafts-grid,
+            .hotels-grid,
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">t2India®</div>
+        <div class="tagline">Your Gateway To India</div>
+    </div>
+
+    <div class="container">
+        <div class="itinerary-card">
+            <!-- Header Section -->
+            <div class="itinerary-header">
+                <h1 class="itinerary-title">CLASSIC GOLDEN TRIANGLE</h1>
+                <div class="itinerary-meta">
+                    <div class="meta-item">Unique ID: T2I-GT-001</div>
+                    <div class="meta-item">Duration: 6 Days</div>
+                    <div class="meta-item">Rating: 4.8★</div>
+                    <div class="meta-item">156 Successful Bookings</div>
+                </div>
+            </div>
+
+            <!-- Description Section -->
+            <div class="description">
+                Experience India's most iconic destinations with the majestic Taj Mahal, royal palaces of Jaipur, and historic monuments of Delhi in this timeless 6-day journey.
+            </div>
+
+            <!-- Pictures Section -->
+            <div class="pictures-section">
+                <h2 class="section-title">Prominent Pictures</h2>
+                <div class="pictures-grid">
+                    <div class="picture-card">
+                        <div class="picture-placeholder">Taj Mahal Sunrise</div>
+                        <h3>Taj Mahal at Sunrise - Symbol of Eternal Love</h3>
+                        <p>Location: Agra</p>
+                        <a href="https://t2india.com/attractions/taj-mahal" class="link">View Details</a>
+                    </div>
+                    <div class="picture-card">
+                        <div class="picture-placeholder">Hawa Mahal</div>
+                        <h3>Hawa Mahal - Palace of Winds</h3>
+                        <p>Location: Jaipur</p>
+                        <a href="https://t2india.com/attractions/hawa-mahal" class="link">View Details</a>
+                    </div>
+                    <div class="picture-card">
+                        <div class="picture-placeholder">Red Fort</div>
+                        <h3>Red Fort - Mughal Grandeur</h3>
+                        <p>Location: Delhi</p>
+                        <a href="https://t2india.com/attractions/red-fort" class="link">View Details</a>
+                    </div>
+                    <div class="picture-card">
+                        <div class="picture-placeholder">Amber Fort</div>
+                        <h3>Amber Fort - Rajasthani Architecture</h3>
+                        <p>Location: Jaipur</p>
+                        <a href="https://t2india.com/attractions/amber-fort" class="link">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Handicrafts Section -->
+            <div class="handicrafts-section">
+                <h2 class="section-title">Available Handicrafts</h2>
+                <div class="handicrafts-grid">
+                    <div class="handicraft-city">
+                        <h3>In Delhi:</h3>
+                        <div class="handicraft-item">
+                            <strong>Traditional Pottery</strong> with Master Ramesh Kumar<br>
+                            Duration: 3 hours | Price: ₹1,200<br>
+                            <a href="https://t2india.com/experiences/delhi-pottery" class="link">Experience Link</a>
+                        </div>
+                        <div class="handicraft-item">
+                            <strong>Block Printing</strong> with Sita Devi<br>
+                            Duration: 4 hours | Price: ₹1,500<br>
+                            <a href="https://t2india.com/experiences/delhi-block-printing" class="link">Experience Link</a>
+                        </div>
+                    </div>
+                    <div class="handicraft-city">
+                        <h3>In Jaipur:</h3>
+                        <div class="handicraft-item">
+                            <strong>Blue Pottery</strong> with Master Krishan Kant<br>
+                            Duration: 4 hours | Price: ₹2,000<br>
+                            <a href="https://t2india.com/experiences/jaipur-blue-pottery" class="link">Experience Link</a>
+                        </div>
+                        <div class="handicraft-item">
+                            <strong>Gem Cutting</strong> with Rajesh Soni<br>
+                            Duration: 6 hours | Price: ₹5,000<br>
+                            <a href="https://t2india.com/experiences/jaipur-gem-cutting" class="link">Experience Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day-wise Activities -->
+            <div class="day-wise-section">
+                <h2 class="section-title">Day-wise Activities</h2>
+                
+                <div class="day-card">
+                    <div class="day-header">DAY 1: Delhi Arrival & Historic Exploration</div>
+                    <div class="day-activities">
+                        <div class="activity">
+                            <div class="activity-time">Morning</div>
+                            <div class="activity-title">Arrival at Delhi Airport</div>
+                            <p>Meet & greet by T2India representative, transfer to hotel</p>
+                            <a href="https://t2india.com/services/airport-transfer" class="link">Link</a>
+                        </div>
+                        <div class="activity">
+                            <div class="activity-time">Afternoon</div>
+                            <div class="activity-title">Red Fort Visit</div>
+                            <p>Explore the magnificent Mughal fortress and UNESCO World Heritage site</p>
+                            <p><strong>Duration:</strong> 2 hours</p>
+                            <a href="https://t2india.com/attractions/red-fort" class="link">Link</a>
+                        </div>
+                        <div class="activity">
+                            <div class="activity-time">Evening</div>
+                            <div class="activity-title">India Gate & Rajpath</div>
+                            <p>Visit the war memorial and enjoy the ceremonial boulevard</p>
+                            <p><strong>Duration:</strong> 1 hour</p>
+                            <a href="https://t2india.com/attractions/india-gate" class="link">Link</a>
+                        </div>
+                        <p><strong>Overnight:</strong> Delhi</p>
+                    </div>
+                </div>
+
+                <div class="day-card">
+                    <div class="day-header">DAY 2: Delhi to Agra - Taj Mahal Sunset</div>
+                    <div class="day-activities">
+                        <div class="activity">
+                            <div class="activity-time">Morning</div>
+                            <div class="activity-title">Drive to Agra</div>
+                            <p>Comfortable 3-hour drive via Yamuna Expressway</p>
+                            <p><strong>Duration:</strong> 3 hours</p>
+                            <a href="https://t2india.com/transport/delhi-agra" class="link">Link</a>
+                        </div>
+                        <div class="activity">
+                            <div class="activity-time">Evening</div>
+                            <div class="activity-title">Taj Mahal Sunset Visit</div>
+                            <p>Witness the marble monument change colors in golden hour</p>
+                            <p><strong>Duration:</strong> 2 hours</p>
+                            <a href="https://t2india.com/attractions/taj-mahal" class="link">Link</a>
+                        </div>
+                        <p><strong>Overnight:</strong> Agra</p>
+                    </div>
+                </div>
+
+                <!-- Additional days would continue here -->
+            </div>
+
+            <!-- Hotels Section -->
+            <div class="hotels-section">
+                <h2 class="section-title">4-Star Hotel Choices</h2>
+                <div class="hotels-grid">
+                    <div class="hotel-city">
+                        <h3>DELHI:</h3>
+                        <div class="hotel-item">
+                            <strong>The Imperial New Delhi</strong> (4-star Heritage)<br>
+                            Colonial elegance in heart of Delhi (or similar)<br>
+                            <strong>Amenities:</strong> Pool, Spa, Multiple Restaurants<br>
+                            <a href="https://t2india.com/hotels/imperial-delhi" class="link">Booking Link</a>
+                        </div>
+                        <div class="hotel-item">
+                            <strong>Taj Palace New Delhi</strong> (4-star Luxury)<br>
+                            Modern luxury with traditional hospitality (or similar)<br>
+                            <strong>Amenities:</strong> Business Center, Fitness, Fine Dining<br>
+                            <a href="https://t2india.com/hotels/taj-palace-delhi" class="link">Booking Link</a>
+                        </div>
+                    </div>
+                    <div class="hotel-city">
+                        <h3>AGRA:</h3>
+                        <div class="hotel-item">
+                            <strong>Taj Hotel & Convention Centre</strong> (4-star Heritage)<br>
+                            Taj view rooms available (or similar)<br>
+                            <strong>Amenities:</strong> Taj Views, Pool, Multi-cuisine Restaurant<br>
+                            <a href="https://t2india.com/hotels/taj-agra" class="link">Booking Link</a>
+                        </div>
+                    </div>
+                    <div class="hotel-city">
+                        <h3>JAIPUR:</h3>
+                        <div class="hotel-item">
+                            <strong>Hilton Jaipur</strong> (4-star International)<br>
+                            International standards with local charm (or similar)<br>
+                            <strong>Amenities:</strong> Pool, Spa, Multiple Dining Options<br>
+                            <a href="https://t2india.com/hotels/hilton-jaipur" class="link">Booking Link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cost Proposal Section -->
+            <div class="cost-section">
+                <h2 style="color: white;">Cost Proposal Process</h2>
+                <div class="price-range">₹15,000-45,000 per person</div>
+                <p>Final pricing depends on group size, travel dates, and hotel selections</p>
+                
+                <div class="cost-grid">
+                    <div class="cost-card">
+                        <h3>1. Detailed Cost Breakdown</h3>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li>Accommodation costs (4-star hotels or similar)</li>
+                            <li>Private transportation (vehicle appropriate for group size)</li>
+                            <li>All entrance fees and permits</li>
+                            <li>Professional guide services</li>
+                            <li>Handicraft workshop costs</li>
+                        </ul>
+                    </div>
+                    <div class="cost-card">
+                        <h3>2. Pricing Categories</h3>
+                        <ul style="text-align: left; margin-top: 1rem;">
+                            <li><strong>Budget Option:</strong> Standard 4-star accommodations</li>
+                            <li><strong>Premium Option:</strong> Luxury 4-star properties</li>
+                        </ul>
+                    </div>
+                    <div class="cost-card">
+                        <h3>3. Next Steps</h3>
+                        <ol style="text-align: left; margin-top: 1rem;">
+                            <li>Confirm this itinerary suits your requirements</li>
+                            <li>Provide travel dates and group size</li>
+                            <li>Select preferred hotel category</li>
+                            <li>Choose desired handicraft experiences</li>
+                            <li>Receive detailed pricing within 24 hours</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <button class="cta-button" onclick="window.open('https://t2india.com/itineraries/t2i-gt-001', '_blank')">
+                    Get Detailed Cost Proposal
+                </button>
+                
+                <p style="margin-top: 2rem;">
+                    <strong>Contact:</strong> reservations@t2india.com | +91-XXXX-XXXX<br>
+                    All elements in this itinerary are hyperlinked to t2india.com for detailed information and direct booking capabilities.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

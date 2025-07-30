@@ -1,0 +1,58 @@
+graph TD
+    A[Client Input: 'Goa Delhi Kolkata for 12 days'] --> B[Input Parser]
+    
+    B --> C{Extract Information}
+    C --> D[Destinations: Goa, Delhi, Kolkata]
+    C --> E[Duration: 12 days]
+    C --> F[Type: Custom Route]
+    
+    D --> G[Route Optimizer]
+    E --> G
+    F --> G
+    
+    G --> H{Geographical Analysis}
+    H --> I[Optimized Route: Delhi → Goa → Kolkata → Delhi]
+    
+    I --> J[Duration Allocator]
+    J --> K[Main Circuit: 6-7 days]
+    J --> L[Extensions: 5-6 days]
+    
+    K --> M[Extension Engine]
+    L --> M
+    
+    M --> N{Regional Extensions}
+    N --> O[From Kolkata: Darjeeling, Sikkim, Puri]
+    N --> P[From Goa: Hampi, Bangalore]
+    N --> Q[From Delhi: Rishikesh, Haridwar]
+    
+    O --> R[Connectivity Data]
+    P --> R
+    Q --> R
+    
+    R --> S{Google Transport API}
+    S --> T[Train: Kolkata-Darjeeling 11h 48m ₹3K-11K]
+    S --> U[Road: Goa-Hampi 5h ₹350]
+    S --> V[Road: Delhi-Rishikesh 6h ₹800]
+    
+    T --> W[Choice Presentation]
+    U --> W
+    V --> W
+    
+    W --> X{Client Selection}
+    X --> Y[Mountain & Tea Gardens]
+    X --> Z[UNESCO Heritage]
+    X --> AA[Yoga & Spirituality]
+    X --> BB[Religious & Spiritual]
+    
+    Y --> CC[Final Itinerary Generation]
+    Z --> CC
+    AA --> CC
+    BB --> CC
+    
+    CC --> DD[Complete 12-day Plan with Real Logistics]
+    
+    style A fill:#e1f5fe
+    style DD fill:#c8e6c9
+    style X fill:#fff3e0
+    style S fill:#f3e5f5
+
