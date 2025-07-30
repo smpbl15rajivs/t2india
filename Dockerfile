@@ -17,11 +17,11 @@ RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.
 EXPOSE 5000
 
 # Define environment variable for Flask
-ENV FLASK_APP=your_app_file.py
+ENV FLASK_APP=main_clean.py
 # IMPORTANT: Replace 'your_app_file.py' with your actual Flask application file
 
 # Run Gunicorn to serve the Flask application
 # The 'your_app_file:app' part should match your Flask application's entry point
 # For example, if your Flask app is in 'app.py' and the Flask instance is named 'app', it would be 'app:app'
-CMD ["gunicorn", "--workers", "4", "--bind", "0.0.0.0:5000", "your_app_file:app"]
+CMD ["gunicorn", "--workers", "4", "--bind", "0.0.0.0:5000", "main_clean:app"]
 # IMPORTANT: Replace your_app_file:app
