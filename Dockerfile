@@ -7,12 +7,6 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Build React app
-RUN apt-get update && apt-get install -y nodejs npm \
-    && cd frontend && npm install && npm run build \
-    && mv build ../build \
-    && apt-get remove -y nodejs npm && apt-get autoremove -y
-
 # Install any needed packages specified in requirements.txt
 # It's good practice to install dependencies before copying the rest of the application
 # to leverage Docker's layer caching.
