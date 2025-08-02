@@ -65,6 +65,9 @@ def save_auto_learning_data():
         print(f"Error saving auto-learning data: {e}")
 
 @app.route('/api/submit-contact', methods=['POST'])
+@app.route('/')
+def index():
+    return "API is running"
 def submit_contact():
     """Submit contact details for zero-result queries"""
     data = request.get_json()
