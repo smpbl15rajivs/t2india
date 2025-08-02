@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir gunicorn
 RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
 # Expose the port that Gunicorn will listen on
-EXPOSE 3000
+EXPOSE 5001
 
 # Define environment variable for Flask
 ENV FLASK_APP=main_clean.py
