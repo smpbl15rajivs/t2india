@@ -23,5 +23,5 @@ ENV FLASK_APP=main_clean.py
 # Run Gunicorn to serve the Flask application
 # The 'your_app_file:app' part should match your Flask application's entry point
 # For example, if your Flask app is in 'app.py' and the Flask instance is named 'app', it would be 'app:app'
-CMD ["gunicorn", "--workers", "4", "--bind", "0.0.0.0:3000", "main_clean:app"]
+CMD ["gunicorn", "--workers", "4", "--bind", "0.0.0.0:5001", "main_clean:app"]
 # IMPORTANT: Replace your_app_file:app
